@@ -21,3 +21,7 @@ Some of the functions include:
 * `RegDelete` - delete a registry key (and all subkeys) in Windows
 * `TaskKillName` - kill a process in Windows by name
 * `TaskKillPID` - kill a process in Windows by PID
+
+## Credit
+
+Shout out to [mjwhitta](https://github.com/mjwhitta) for all of the help and contributions (mainly allowing me to steal some of his code).
