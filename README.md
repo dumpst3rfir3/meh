@@ -12,9 +12,11 @@ Some of the functions include:
 * `CopyFile` - copy a file from source to destination
 * `Download` - download a file from a specified URL, optionally check the MD5 hash and whether it was blocked by a proxy
 * `EggHunt` - look for a specific sequence of bytes, e.g., within a file, and return the offset(s) where it was found
-* `Patch` - Use egghunt to find a sequence of bytes, then replace it wherever found
+* `Patch` - use egghunt to find a sequence of bytes, then replace it wherever found
+* `Run` - executes a command, but unlike Prelude's `Endpoint.Shell`, this will run the command in the background, and returns a process handle (rather than the command output) - NOTE: you should kill the process when it's done, see [sample.go](examples/sample.go) for an example
 * `StartHTTPFileServer` - start an HTTP file server on localhost
-* ` StartTCPListener` - start a TCP listener on localhost to receive callbacks
+* `StartTCPListener` - start a TCP listener on localhost to receive callbacks
+* `StartWithCustomTimeout` - is exactly the same as Prelude's Endpoint.Start, but allows you to pass a custom timeout so that you're not stuck with the 30 second timeout
 * `MinimizeWindow` - minimize any window in Windows (if the test opens any)
 * `RegDelete` - delete a registry key (and all subkeys) in Windows
 * `TaskKillName` - kill a process in Windows by name
