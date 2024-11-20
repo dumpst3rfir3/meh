@@ -1,6 +1,6 @@
 # My Endpoint Helper (MEH)
 
-![meh](img/meh_logo.jpg)
+<img src="img/meh_logo.jpg" alt="meh" width="200">
 
 Meh...this is just a module that provides some helper functions that I have used often when writing custom [Prelude Detect](https://docs.preludesecurity.com/docs/the-basics) tests. Ho hum. Just import it and use the functions.
 
