@@ -80,6 +80,8 @@ func test() {
 	meh.CheckQuarantine(outfile, b, false)
 
 	// It will only get here if outfile is not quarantined
+	// So we need to add the written file to list of files,
+	// so it can be cleaned up later
 	filesWritten = append(filesWritten, outfile)
 
 	// Written to disk, so try to run it and see if it gets blocked
