@@ -1,5 +1,7 @@
 # My Endpoint Helper (MEH)
 
+![meh](img/meh_logo.jpg)
+
 Meh...this is just a module that provides some helper functions that I have used often when writing custom [Prelude Detect](https://docs.preludesecurity.com/docs/the-basics) tests. Ho hum. Just import it and use the functions.
 
 See [sample.go](examples/sample.go) for an example that imports the module and uses some of its functions.
