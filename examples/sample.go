@@ -76,7 +76,7 @@ func test() {
 	// Download from URL
 	b = meh.Download(url, expectedMD5, "")
 
-	// Write to c:\windows\temp and expect quarantine
+	// Write to c:\windows\temp expecting no quarantine
 	meh.CheckQuarantine(outfile, b, false)
 
 	// It will only get here if outfile is not quarantined
