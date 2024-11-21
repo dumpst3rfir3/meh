@@ -361,6 +361,7 @@ func Stop(code int) {
 	stopMutex.Lock()
 	defer stopMutex.Unlock()
 
+	endpoint.Say("Running cleanup")
 	cleanup()
 
 	endpoint.Stop(code)
