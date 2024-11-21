@@ -96,7 +96,7 @@ func Download(
 		"Edg/115.0.1901.188 " +
 		"red team prelude test"
 
-	endpoint.Say("Downloading file")
+	endpoint.Say("Downloading file from %s", url)
 	req = network.NewHTTPRequest(
 		url,
 		&network.RequestOptions{
