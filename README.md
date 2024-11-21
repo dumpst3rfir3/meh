@@ -17,6 +17,7 @@ Some of the functions include:
 * `StartHTTPFileServer` - start an HTTP file server on localhost
 * `StartTCPListener` - start a TCP listener on localhost to receive callbacks
 * `StartWithCustomTimeout` - is exactly the same as Prelude's Endpoint.Start, but allows you to pass a custom timeout so that you're not stuck with the 30 second timeout
+* `Stop` - calls Endpoint.Stop, but locks a mutex first to prevent race conditions where multiple threads call Endpoint.Stop
 * `MinimizeWindow` - minimize any window in Windows (if the test opens any)
 * `RegDelete` - delete a registry key (and all subkeys) in Windows
 * `TaskKillName` - kill a process in Windows by name

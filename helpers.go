@@ -341,11 +341,16 @@ func StartWithCustomTimeout(
 	}()
 
 	time.Sleep(timeout)
-	stop(endpoint.TimeoutExceeded)
+	Stop(endpoint.TimeoutExceeded)
 
 }
 
-func stop(code int) {
+// Prelude's Endpoint.Stop function allows for a race condition
+// where, for example, a background thread might try to call
+// Endpoint.Stop at the same time as the main thread. This
+// version of Stop just calls Endpoint.Stop, but locks a mutex
+// first so that only one thread can call it
+func Stop(code int) {
 	// Only allow one stop
 	stopMutex.Lock()
 	defer stopMutex.Unlock()
