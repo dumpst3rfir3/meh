@@ -113,6 +113,7 @@ func Download(
 	}
 
 	// Check for proxy block
+	endpoint.Say("proxyblockstring: %s", proxyblockstring)
 	if proxyblockstring != "" {
 		if bytes.Contains(res.Body, []byte(proxyblockstring)) {
 			endpoint.Say("Download blocked by proxy")
