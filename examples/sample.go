@@ -48,7 +48,7 @@ func run() {
 		meh.Stop(endpoint.ExecutionPrevented)
 	}
 
-	endpoint.Wait(5 * time.Second)
+	endpoint.Wait(-1)
 
 	// Doesn't kill children, do that manually in clean
 	endpoint.Say("Killing %s process...", name)
