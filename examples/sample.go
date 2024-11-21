@@ -55,9 +55,9 @@ func run() {
 	if e = p.Kill(); e != nil {
 		endpoint.Say("Failed to kill process: %s", e)
 		endpoint.Say("Note: it may have exited on its own")
+	} else {
+		endpoint.Say("Successfully killed process")
 	}
-
-	endpoint.Say("Successfully killed process")
 }
 
 func setup() {
