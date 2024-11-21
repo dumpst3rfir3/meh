@@ -34,7 +34,12 @@ type cbDetect struct {
 func CleanFiles(paths ...string) {
 	for _, path := range paths {
 		if endpoint.Exists(path) {
-			endpoint.Remove(path)
+			removed := endpoint.Remove(path)
+			if removed {
+				endpoint.Say("Sucessfully removed %s", path)
+			} else {
+				endpoint.Say("Failed to remove %s", path)
+			}
 		}
 	}
 }
