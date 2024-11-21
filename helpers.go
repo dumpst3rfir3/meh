@@ -357,11 +357,11 @@ func StartWithCustomTimeout(
 // version of Stop just calls Endpoint.Stop, but locks a mutex
 // first so that only one thread can call it
 func Stop(code int) {
-	defer cleanup()
-
 	// Only allow one stop
 	stopMutex.Lock()
 	defer stopMutex.Unlock()
+
+	cleanup()
 
 	endpoint.Stop(code)
 }
