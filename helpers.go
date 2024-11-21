@@ -137,7 +137,7 @@ func Download(
 				sum,
 				expectedMD5,
 			)
-			return nil
+			endpoint.Stop(endpoint.UnexpectedTestError)
 		}
 	}
 
