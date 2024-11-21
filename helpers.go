@@ -337,8 +337,6 @@ func StartWithCustomTimeout(
 		cleanup = clean[0]
 	}
 
-	defer cleanup()
-
 	endpoint.Say(
 		"Starting test at: %s",
 		time.Now().Format("2006-01-02T15:04:05"),
@@ -359,6 +357,8 @@ func StartWithCustomTimeout(
 // version of Stop just calls Endpoint.Stop, but locks a mutex
 // first so that only one thread can call it
 func Stop(code int) {
+	defer cleanup()
+
 	// Only allow one stop
 	stopMutex.Lock()
 	defer stopMutex.Unlock()
