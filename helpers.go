@@ -25,7 +25,7 @@ var stopMutex *sync.Mutex = &sync.Mutex{}
 
 // Callback detect - used to detect if a successfull callback
 // was received by the TCP listener defined below
-type cbDetect struct {
+type CallbackDetect struct {
 	Connected bool
 	Err       error
 }
@@ -263,8 +263,8 @@ func StartHTTPFileServer(lport int, dir ...string) chan struct{} {
 // out to localhost
 // Example usage below:
 //
-//	var cbd cbDetect
-//	var r chan cbDetect = StartTCPListener(4444, 5 * time.Second)
+//	var cbd CallbackDetect
+//	var r chan CallbackDetect = StartTCPListener(4444, 5 * time.Second)
 //
 //	cbd = <- r
 //
@@ -276,13 +276,13 @@ func StartHTTPFileServer(lport int, dir ...string) chan struct{} {
 //	        fmt.Printf("because %s\n", cbd.Err)
 //	    }
 //	}
-func StartTCPListener(lport int, to time.Duration) chan cbDetect {
-	var rcvd chan cbDetect = make(chan cbDetect, 1)
+func StartTCPListener(lport int, to time.Duration) chan CallbackDetect {
+	var rcvd chan CallbackDetect = make(chan CallbackDetect, 1)
 
 	go func() {
 		var a *net.TCPAddr
 		var c *net.TCPConn
-		var cbd cbDetect
+		var cbd CallbackDetect
 		var e error
 		var l *net.TCPListener
 
