@@ -24,7 +24,7 @@ var cleanup fn = func() {}
 var stopMutex *sync.Mutex = &sync.Mutex{}
 
 // Callback detect - used to detect if a successfull callback
-// was received by the TCP listener defined below
+// was received by the TCP listener defined in StarTCPListener
 type CallbackDetect struct {
 	Connected bool
 	Err       error
