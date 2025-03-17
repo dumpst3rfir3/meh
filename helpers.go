@@ -36,7 +36,7 @@ func CleanFiles(paths ...string) {
 		if endpoint.Exists(path) {
 			removed := endpoint.Remove(path)
 			if removed {
-				endpoint.Say("Sucessfully removed %s", path)
+				endpoint.Say("Successfully removed %s", path)
 			} else {
 				endpoint.Say("Failed to remove %s", path)
 			}
